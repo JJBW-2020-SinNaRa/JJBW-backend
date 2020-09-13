@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import {
   ApolloServer,
   ApolloServerExpressConfig,
@@ -17,7 +18,19 @@ const app = express();
 app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
-  .use(cookieParser());
+  .use(cookieParser())
+  .use(cors({
+    origin: (origin, callback) => {
+      if (!origin || process.env.NODE_ENV !== "production") {
+        return callback(null, true);
+      }
+      if (/^(https?:\/\/)?([\w\d-\.]*\.)?example.com/.test(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed CORS."), false);
+    },
+    credentials: true,
+  }));
 
 const apolloConfig: ApolloServerExpressConfig = {
   context: contextHandler,
