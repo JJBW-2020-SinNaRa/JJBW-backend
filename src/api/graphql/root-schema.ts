@@ -17,7 +17,7 @@ const typeDefs = gql`
 
 const resolver: IResolvers = {
   Query: {
-    _: () => "test",
+    _: () => "",
   },
   Mutation: {
     _: () => "",
