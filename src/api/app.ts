@@ -16,7 +16,7 @@ import {
 
 const app = express();
 app
-  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
   // .use(cookieParser())
   // .use(cors({
