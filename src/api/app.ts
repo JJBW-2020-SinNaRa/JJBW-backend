@@ -18,13 +18,13 @@ const app = express();
 app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
-  // .use(cookieParser())
-  // .use(cors({
-  //   origin: (origin, callback) => {
-  //     return callback(null, true);
-  //   },
-  //   credentials: true,
-  // }));
+  .use(cookieParser())
+  .use(cors({
+    origin: (origin, callback) => {
+      return callback(null, true);
+    },
+    credentials: true,
+  }));
 
 const apolloConfig: ApolloServerExpressConfig = {
   context: contextHandler,

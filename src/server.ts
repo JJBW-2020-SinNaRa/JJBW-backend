@@ -1,11 +1,13 @@
 import {
-  app,
-} from "./api/app";
-import {
   createServer,
   Server,
 } from "http";
-import { connectDatabase } from "./connect-database";
+import {
+  app,
+} from "./api/app";
+import {
+  connectDatabase,
+} from "./connect-database";
 
 let server: Server;
 const port = parseInt(process.env.PORT) || 4000;

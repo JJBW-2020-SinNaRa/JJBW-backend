@@ -9,6 +9,7 @@ import {
   AccountSchema,
   RootSchema,
   TokenSchema,
+  TrashSchema,
 } from "./graphql";
 
 export const schema = makeExecutableSchema({
@@ -17,11 +18,13 @@ export const schema = makeExecutableSchema({
     RootSchema.typeDefs,
     TokenSchema.typeDefs,
     AccountSchema.typeDefs,
+    TrashSchema.typeDefs,
   ],
   resolvers: [
     resolvers,
     RootSchema.resolver,
     TokenSchema.resolver,
     AccountSchema.resolver,
+    TrashSchema.resolvers,
   ],
 });
