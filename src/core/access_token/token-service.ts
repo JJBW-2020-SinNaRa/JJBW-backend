@@ -13,11 +13,11 @@ import {
 const generateAccessToken = async (
   account: Account,
 ) => {
-  const expiresAt = new Date();
-  expiresAt.setHours(expiresAt.getHours() + 24);
+  const expiredAt = new Date();
+  expiredAt.setHours(expiredAt.getHours() + 24);
   const option: SignOptions = {
     algorithm: "HS512",
-    expiresIn: (expiresAt.getTime() - Date.now()) / 1000,
+    expiresIn: (expiredAt.getTime() - Date.now()) / 1000,
     issuer: "hatereal.io",
     subject: "access_token",
   };
@@ -28,13 +28,15 @@ const generateAccessToken = async (
   const repository = getRepository(AccessToken);
   const accessToken = new AccessToken();
   accessToken.token = token;
-  accessToken.expiredAt = expiresAt;
+  accessToken.expiredAt = expiredAt;
   accessToken.payload = payload;
   accessToken.account = account;
   await repository.manager.save(accessToken);
   return {
+    account,
+    expiredAt,
+    payload,
     token,
-    expiresAt,
   };
 };
 

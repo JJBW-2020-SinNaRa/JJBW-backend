@@ -2,6 +2,7 @@ import {
   createConnection,
 } from "typeorm";
 import {
+  AccessToken,
   Account,
 } from "src/core";
 import type {
@@ -13,6 +14,7 @@ import type {
 const isProduction = process.env.NODE_ENV === "production";
 const entities: (string | Function | EntitySchema<any>)[] = [
   Account,
+  AccessToken,
 ];
 const connectionOption: ConnectionOptions = {
   type: "postgres",
