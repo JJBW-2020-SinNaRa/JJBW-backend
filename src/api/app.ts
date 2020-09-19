@@ -21,13 +21,7 @@ app
   .use(cookieParser())
   .use(cors({
     origin: (origin, callback) => {
-      if (!origin || process.env.NODE_ENV !== "production") {
-        return callback(null, true);
-      }
-      if (/^(https?:\/\/)?([\w\d-\.]*\.)?example.com/.test(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error("Not allowed CORS."), false);
+      return callback(null, true);
     },
     credentials: true,
   }));
