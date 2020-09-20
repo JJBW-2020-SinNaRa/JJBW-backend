@@ -4,6 +4,8 @@ import {
 import {
   AccessToken,
   Account,
+  Badge,
+  Report,
 } from "src/core";
 import type {
   Connection,
@@ -15,6 +17,8 @@ const isProduction = process.env.NODE_ENV === "production";
 const entities: (string | Function | EntitySchema<any>)[] = [
   Account,
   AccessToken,
+  Badge,
+  Report,
 ];
 const connectionOption: ConnectionOptions = {
   type: "postgres",

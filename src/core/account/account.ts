@@ -9,6 +9,8 @@ import {
   DefaultTimestamp,
   AccessToken,
 } from "src/core";
+import { Badge } from "../badge/badge";
+import { Report } from "../report/report";
 
 @Entity({
   schema: "jjbw",
@@ -56,6 +58,15 @@ export class Account extends AutoUUID {
 
   @OneToMany(() => AccessToken, (token) => token.account)
   accessTokens: AccessToken[];
+
+  @OneToMany(() => Badge, (badge) => badge.account)
+  badges: Badge[];
+
+  @OneToMany(() => Report, (report) => report.reporter)
+  reports: Report[];
+
+  @OneToMany(() => Report, (report) => report.cleaner)
+  cleans: Report[];
 
   @Column(() => DefaultTimestamp, defaultEmbeddedOption)
   timestamps: Readonly<DefaultTimestamp>;

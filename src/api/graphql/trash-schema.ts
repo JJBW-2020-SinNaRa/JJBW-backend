@@ -3,11 +3,9 @@ import {
   IResolvers,
 } from "apollo-server-express";
 import path from "path";
-import fs, { createWriteStream } from "fs";
+import { createWriteStream } from "fs";
 
 const typeDefs = gql`
-  scalar Upload
-
   type File {
     filename: String
     mimetype: String

@@ -4,6 +4,7 @@ import {
 } from "apollo-server-express";
 
 const typeDefs = gql`
+  scalar Upload
   type Query {
     _: String
   }
