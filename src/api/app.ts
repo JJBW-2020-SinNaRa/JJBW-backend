@@ -26,7 +26,14 @@ app
     },
     credentials: true,
   }))
-  .use("/public", express.static(path.resolve(__dirname, "../../public")));
+  .use("/public", express.static(path.resolve(__dirname, "../../public")))
+  .use(express.static(path.resolve(__dirname, "../../../JJBW-frontend/build")))
+  .get("*", (req, res, next) => {
+    if (req.path === "/graph" && process.env.NODE_ENV !== "production") {
+      return next();
+    }
+    return res.sendFile(path.resolve(__dirname, "../../../JJBW-frontend/build/index.html"))
+  })
 
 const apolloConfig: ApolloServerExpressConfig = {
   context: contextHandler,
