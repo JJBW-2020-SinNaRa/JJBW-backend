@@ -5,7 +5,7 @@ import {
   ManyToOne,
 } from "typeorm";
 import {
-  AutoUUID,
+  AutoID,
   Account,
   defaultEmbeddedOption,
   DefaultTimestamp
@@ -15,7 +15,7 @@ import {
   schema: "jjbw",
   name: "report",
 })
-export class Report extends AutoUUID {
+export class Report extends AutoID {
 
   @Column({
     type: "float8",

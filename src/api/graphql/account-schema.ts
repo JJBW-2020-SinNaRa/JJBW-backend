@@ -6,7 +6,7 @@ import { AccountService } from "src/core";
 
 const typeDefs = gql`
   type Account {
-    idx: String
+    idx: Int
     id: String
     name: String
     isAdmin: Boolean

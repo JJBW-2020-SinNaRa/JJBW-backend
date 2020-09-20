@@ -1,3 +1,3 @@
 export class AccessPayload {
-  idx: string;
+  idx: number;
 }

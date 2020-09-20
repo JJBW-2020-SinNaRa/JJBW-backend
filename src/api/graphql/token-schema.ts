@@ -6,7 +6,7 @@ import { AccountService, TokenService } from "src/core";
 
 const typeDefs = gql`
   type Payload {
-    idx: String
+    idx: Int
   }
   type OAuth {
     token: String

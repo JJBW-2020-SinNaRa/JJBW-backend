@@ -6,7 +6,7 @@ import {
 } from "typeorm";
 import {
   Account,
-  AutoUUID,
+  AutoID,
   defaultEmbeddedOption,
   DefaultTimestamp,
 } from "src/core";
@@ -15,7 +15,7 @@ import {
   schema: "jjbw",
   name: "badge",
 })
-export class Badge extends AutoUUID {
+export class Badge extends AutoID {
 
   @Column({
     type: "varchar",

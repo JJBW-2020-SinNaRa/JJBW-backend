@@ -29,7 +29,7 @@ const typeDefs = gql`
   }
   extend type Query {
     reports: [Report]
-    report(idx: String!): Report
+    report(idx: Int!): Report
   }
   extend type Mutation {
     createReport(token: String!, reward: String!, location: String!, type: String!, discoveredAt: String!, image: Upload): Report
@@ -40,7 +40,7 @@ const typeDefs = gql`
 const resolvers: IResolvers = {
   Query: {
     report: async (parent, params, context, info) => {
-      return await ReportService.findOne(params.idx);
+      return await ReportService.findOne(parseInt(params.idx));
     },
     reports: async (parent, params, context, info) => {
       return await ReportService.findMany();
@@ -49,7 +49,7 @@ const resolvers: IResolvers = {
   Mutation: {
     createReport: async (parent, params, conetxt, info) => {
       const { idx } = TokenService.verifyToken(params["token"]) as any;
-      const account = await AccountService.findOneByIDX(idx);
+      const account = await AccountService.findOneByIDX(parseInt(idx));
       let image: string | undefined = undefined;
       if (params.image != null) {
         const file = await upload(await params.image);

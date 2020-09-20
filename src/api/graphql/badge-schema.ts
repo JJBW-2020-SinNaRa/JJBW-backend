@@ -14,7 +14,7 @@ const typeDefs = gql`
     updatedAt: DateTime
   }
   type Badge {
-    idx: String
+    idx: Int
     name: String
     obtain: String
     badgeURL: String
@@ -23,7 +23,7 @@ const typeDefs = gql`
   }
   extend type Query {
     getBadges(token: String!): [Badge]
-    getBadge(token: String!, idx: String): Badge
+    getBadge(token: String!, idx: Int): Badge
   }
 `;
 
@@ -31,7 +31,7 @@ const resolvers: IResolvers = {
   Query: {
     getBadges: async (parent, params, context, info) => {
       const { idx } = TokenService.verifyToken(params["token"]) as any;
-      const account = await AccountService.findOneByIDX(idx);
+      const account = await AccountService.findOneByIDX(parseInt(idx));
       if (account != null) {
         return await BadgeService.getBadges(account);
       }
@@ -39,9 +39,9 @@ const resolvers: IResolvers = {
     },
     getBadge: async (parent, params, context, info) => {
       const { idx } = TokenService.verifyToken(params["token"]) as any;
-      const account = await AccountService.findOneByIDX(idx);
+      const account = await AccountService.findOneByIDX(parseInt(idx));
       if (account != null) {
-        return await BadgeService.getBadge(params.idx);
+        return await BadgeService.getBadge(parseInt(params.idx));
       }
       return null;
     },

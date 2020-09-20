@@ -18,7 +18,7 @@ const getBadges = (
 };
 
 const getBadge = (
-  idx: string,
+  idx: number,
 ) => {
   const repository = getRepository(Badge);
   return repository

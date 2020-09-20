@@ -15,7 +15,7 @@ const findOneByID = (
 };
 
 const findOneByIDX = (
-  idx: string,
+  idx: number,
 ) => {
   const repository = getRepository(Account);
   return repository.createQueryBuilder("account")

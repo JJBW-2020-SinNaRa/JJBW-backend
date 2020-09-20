@@ -5,8 +5,8 @@ import {
   ManyToOne,
 } from "typeorm";
 import {
-  AutoUUID,
   defaultEmbeddedOption,
+  AutoID,
   DefaultTimestamp,
   Account,
   AccessPayload
@@ -16,7 +16,7 @@ import {
   schema: "jjbw",
   name: "access_token",
 })
-export class AccessToken extends AutoUUID {
+export class AccessToken extends AutoID {
 
   @Column({
     type: "text",

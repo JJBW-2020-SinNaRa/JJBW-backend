@@ -4,19 +4,19 @@ import {
   OneToMany,
 } from "typeorm";
 import {
-  AutoUUID,
+  AutoID,
   defaultEmbeddedOption,
   DefaultTimestamp,
   AccessToken,
+  Report,
+  Badge,
 } from "src/core";
-import { Badge } from "../badge/badge";
-import { Report } from "../report/report";
 
 @Entity({
   schema: "jjbw",
   name: "account",
 })
-export class Account extends AutoUUID {
+export class Account extends AutoID {
 
   @Column({
     type: "varchar",

@@ -37,7 +37,7 @@ const findMany = () => {
 };
 
 const findOne = (
-  idx: string,
+  idx: number,
 ) => {
   const repository = getRepository(Report);
   return repository
