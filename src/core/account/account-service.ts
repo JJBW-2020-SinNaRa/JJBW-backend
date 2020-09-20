@@ -14,6 +14,15 @@ const findOneByID = (
     .getOne();
 };
 
+const findOneByIDX = (
+  idx: string,
+) => {
+  const repository = getRepository(Account);
+  return repository.createQueryBuilder("account")
+    .where("account.idx = :idx", { idx })
+    .getOne();
+};
+
 const createID = async (
   id: string,
   name: string,
@@ -34,4 +43,5 @@ const createID = async (
 export const AccountService = {
   findOneByID,
   createID,
+  findOneByIDX,
 };

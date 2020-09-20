@@ -12,7 +12,7 @@ const createReport = (
   location: string,
   type: string,
   discoveredAt: string,
-  image: string,
+  image: string = "",
   reporter: Account,
 ) => {
   const repository = getRepository(Report);
@@ -22,8 +22,8 @@ const createReport = (
   report.location = location;
   report.type = type;
   report.discoveredAt = discoveredAt;
-  report.image = image;
   report.reporter = reporter;
+  report.image = image;
   return repository.manager.save(report);
 };
 

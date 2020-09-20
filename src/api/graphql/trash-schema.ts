@@ -16,13 +16,16 @@ const typeDefs = gql`
   }
 `;
 
-const upload = ({ createReadStream, filename, mimetype, encoding, }: any): Promise<any> => {
+export const upload = ({ createReadStream, filename, mimetype, encoding, }: any): Promise<any> => {
   return new Promise((resolve, reject) => {
     const uploadDir = path.resolve(__dirname, '../../../public');
-    const filepath = `${uploadDir}/${filename}`;
+    const newName = new Date().getTime().toString() + "." + mimetype.split("/")[1];
+    const filepath = `${uploadDir}/${newName}`;
     const stream = createReadStream();
     stream.pipe(createWriteStream(filepath))
-      .on("finish", () => resolve({ filename, mimetype, encoding }))
+      .on("finish", () => {
+        resolve({ newName, mimetype, encoding })
+      })
       .on("error", reject);
   });
 };
@@ -31,7 +34,6 @@ const resolvers: IResolvers = {
   Mutation: {
     uploadSingle: async (parent, params, context, info) => {
       const { filename, mimetype, encoding } = await upload(await params.file);
-      console.log(filename)
       return { filename, mimetype, encoding };
     }
   }

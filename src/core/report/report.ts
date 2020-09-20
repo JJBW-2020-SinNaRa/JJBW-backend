@@ -98,5 +98,5 @@ export class Report extends AutoUUID {
   isPaid: boolean;
 
   @Column(() => DefaultTimestamp, defaultEmbeddedOption)
-  timestamps: Readonly<DefaultTimestamp>;
+  timestamp: Readonly<DefaultTimestamp>;
 }

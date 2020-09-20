@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
 import {
   ApolloServer,
   ApolloServerExpressConfig,
@@ -24,7 +25,8 @@ app
       return callback(null, true);
     },
     credentials: true,
-  }));
+  }))
+  .use("/public", express.static(path.resolve(__dirname, "../../public")));
 
 const apolloConfig: ApolloServerExpressConfig = {
   context: contextHandler,
